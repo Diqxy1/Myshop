@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+    <title></title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">MyShop</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link active" href="/products/">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link" href="/products/category">Adicionar Categoria</a>
+          <a class="nav-item nav-link" href="/products/create">Adicionar Produto</a>
+        </div>
+      </div>
+    </nav>
+
+
+    <form method="post">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Nome</label>
+        <input type="text" class="form-control" id="exampleFormControlInput1" name="title" value="{{ product.title }}">
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlSelect1">Categoria</label>
+        <select class="form-control" id="exampleFormControlSelect1" name="category">
+          <option>{{ product.category }}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Preço</label>
+        <input type="text" class="form-control" id="exampleFormControlInput1" name="price" value="{{ product.price }}">
+      </div>
+      <button type="submit" class="btn btn-primary">Adicionar</button>
+    </form>
+  </body>
+</html>

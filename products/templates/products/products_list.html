@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+    <title></title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-between">
+      <a class="navbar-brand" href="#">MyShop</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link active" href="/products/">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link" href="/products/category">Adicionar Categoria</a>
+          <a class="nav-item nav-link" href="/products/create">Adicionar Produto</a>
+        </div>
+      </div>
+      <form action="/products/update/" method="get" class="form-inline">
+        {% csrf_token %}
+        <input class="form-control mr-sm-2" type="search" placeholder="Id" name="id">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Editar</button>
+      </form>
+    </nav>
+
+    <!-- {% for category in categorys %}
+    <h1>{{ category }}</h1>
+    {% endfor %} -->
+
+    <div class="mx-2 px-2 my-2">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Categoria</th>
+            <th scope="col">Preço</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        {% for product in products %}
+        <tbody>
+          <tr>
+            <th scope="row">{{ product.id }}</th>
+            <td>{{ product.title }}</td>
+            <td>{{ product.category }}</td>
+            <td>{{ product.abstract }}</td>
+            <td><a href="/products/delete/{{ product.id }}" class="badge badge-danger">Danger</a></td>
+          </tr>
+        </tbody>
+        {% endfor %}
+      </table>
+    </div>
+
+  </body>
+</html>
