@@ -15,8 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.shortcuts import redirect
+
+def redirect_to_products(request):
+    return redirect('/products/list')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', redirect_to_products),
     path('products/', include('products.urls')),
+    path('categorys/', include('categorys.urls')),
 ]
