@@ -17,4 +17,4 @@ def category_create(request):
         if form.is_valid():
             form.save()
             return redirect(reverse_lazy('category_list'))
-    return render(request, 'categorys/category_create.html')
+    return render(request, 'categorys/category_create.html', context)
